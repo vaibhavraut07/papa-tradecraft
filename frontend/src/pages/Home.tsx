@@ -46,7 +46,7 @@ const Home = () => {
         {/* Enhanced Hero Section with Image Background */}
         <section 
           ref={heroRef}
-          className="relative min-h-screen flex items-center justify-center overflow-hidden"
+          className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24"
         >
           {/* Background Image with Overlay */}
           <motion.div 
@@ -74,7 +74,7 @@ const Home = () => {
             />
           </div>
           
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4 relative z-10 py-8 md:py-12">
             <div className="max-w-6xl mx-auto">
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 {/* Left Content */}
@@ -85,14 +85,14 @@ const Home = () => {
                 >
                   {/* PAPA Acronym Badge */}
                   <motion.div
-                    className="inline-block mb-6"
+                    className="inline-block mb-6 mt-4 md:mt-0"
                     initial={{ scale: 0, rotate: -180 }}
                     animate={{ scale: 1, rotate: 0 }}
                     transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
                   >
-                    <div className="px-6 py-3 rounded-full gradient-gold shadow-gold">
-                      <p className="text-sm font-bold text-primary-foreground tracking-wider">
-                        Patience • Analysis • Precision • Action
+                    <div className="px-4 sm:px-6 py-2 sm:py-3 rounded-full gradient-gold shadow-gold">
+                      <p className="text-xs sm:text-sm font-bold text-primary-foreground tracking-wider whitespace-nowrap">
+                        Patience • Analytical • Persistent • Adaptive
                       </p>
                     </div>
                   </motion.div>
@@ -360,9 +360,9 @@ const Home = () => {
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
                 {[
                   { letter: "P", word: "Patience", desc: "Wait for perfect setups", icon: Clock, color: "from-purple-500 to-pink-500" },
-                  { letter: "A", word: "Analysis", desc: "Data-driven decisions", icon: BarChart3, color: "from-blue-500 to-cyan-500" },
-                  { letter: "P", word: "Precision", desc: "Accurate entry/exit", icon: Target, color: "from-green-500 to-emerald-500" },
-                  { letter: "A", word: "Action", desc: "Execute with confidence", icon: Zap, color: "from-orange-500 to-red-500" }
+                  { letter: "A", word: "Analytical", desc: "Data-driven decisions", icon: BarChart3, color: "from-blue-500 to-cyan-500" },
+                  { letter: "P", word: "Persistent", desc: "Stay consistent", icon: Target, color: "from-green-500 to-emerald-500" },
+                  { letter: "A", word: "Adaptive", desc: "Adapt to markets", icon: Zap, color: "from-orange-500 to-red-500" }
                 ].map((item, index) => (
                   <motion.div
                     key={index}
