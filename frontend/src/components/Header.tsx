@@ -32,15 +32,33 @@ const Header = () => {
         isScrolled ? "bg-card/95 backdrop-blur-lg shadow-card" : "bg-transparent"
       }`}
     >
-      <nav className="container mx-auto px-4 py-4">
+      <nav className="container mx-auto px-3 sm:px-4 py-3 md:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 rounded-lg gradient-gold flex items-center justify-center font-display font-bold text-primary-foreground">
-              PT
-            </div>
-            <span className="font-display font-bold text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Papa Trading
+            <img 
+              src="/logo.png" 
+              alt="PAPA TRADING Logo" 
+              className="h-8 sm:h-10 w-auto"
+              onError={(e) => {
+                // Fallback to text logo if image not found
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const parent = target.parentElement;
+                if (parent) {
+                  parent.innerHTML = `
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg gradient-peacock flex items-center justify-center font-display font-bold text-primary-foreground text-xs sm:text-sm">
+                      PT
+                    </div>
+                    <span class="font-display font-bold text-base sm:text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      PAPA TRADING
+                    </span>
+                  `;
+                }
+              }}
+            />
+            <span className="font-display font-bold text-base sm:text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hidden sm:block">
+              PAPA TRADING
             </span>
           </Link>
 
@@ -71,6 +89,19 @@ const Header = () => {
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="bg-card border-border">
                     <ul className="grid w-[400px] gap-3 p-4">
+                      <li>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to="/mentorship-program"
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-accent-foreground focus:bg-muted focus:text-accent-foreground"
+                          >
+                            <div className="text-sm font-medium leading-none">Mentorship Program</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                              Elite mentorship program with NISM certified analysts
+                            </p>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
                       <li>
                         <NavigationMenuLink asChild>
                           <Link
@@ -115,17 +146,20 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button className="gradient-gold text-primary-foreground font-semibold shadow-gold hover:scale-105 transition-transform">
-              Join Mentorship
-            </Button>
+            <Link to="/mentorship-program">
+              <Button className="gradient-gold text-primary-foreground font-semibold shadow-gold hover:scale-105 transition-transform">
+                Join Mentorship
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-1.5 sm:p-2 text-foreground"
+            aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={20} className="sm:w-6 sm:h-6" /> : <Menu size={20} className="sm:w-6 sm:h-6" />}
           </button>
         </div>
 
@@ -133,35 +167,42 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 space-y-2 pb-4">
             <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-              <Button variant="ghost" className="w-full justify-start">
+              <Button variant="ghost" className="w-full justify-start text-sm sm:text-base">
                 Home
               </Button>
             </Link>
             <Link to="/about" onClick={() => setIsMobileMenuOpen(false)}>
-              <Button variant="ghost" className="w-full justify-start">
+              <Button variant="ghost" className="w-full justify-start text-sm sm:text-base">
                 About Us
               </Button>
             </Link>
-            <div className="space-y-2 pl-4">
+            <div className="space-y-2 pl-2 sm:pl-4">
+              <Link to="/mentorship-program" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button variant="ghost" className="w-full justify-start text-xs sm:text-sm">
+                  Mentorship Program
+                </Button>
+              </Link>
               <Link to="/scanner-suite" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button variant="ghost" className="w-full justify-start text-sm">
+                <Button variant="ghost" className="w-full justify-start text-xs sm:text-sm">
                   Scanner Suite
                 </Button>
               </Link>
               <Link to="/pro-trend-indicator" onClick={() => setIsMobileMenuOpen(false)}>
-                <Button variant="ghost" className="w-full justify-start text-sm">
+                <Button variant="ghost" className="w-full justify-start text-xs sm:text-sm">
                   Pro Trend Indicator
                 </Button>
               </Link>
             </div>
             <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-              <Button variant="ghost" className="w-full justify-start">
+              <Button variant="ghost" className="w-full justify-start text-sm sm:text-base">
                 Contact Us
               </Button>
             </Link>
-            <Button className="w-full gradient-gold text-primary-foreground font-semibold">
-              Join Mentorship
-            </Button>
+            <Link to="/mentorship-program" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button className="w-full gradient-gold text-primary-foreground font-semibold text-sm sm:text-base py-2 sm:py-3">
+                Join Mentorship
+              </Button>
+            </Link>
           </div>
         )}
       </nav>

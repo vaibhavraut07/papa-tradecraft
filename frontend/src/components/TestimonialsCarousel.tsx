@@ -19,7 +19,7 @@ const testimonials: Testimonial[] = [
     role: "Swing Trader",
     location: "Mumbai, Maharashtra",
     rating: 5,
-    text: "Papa Trading's Pro Trend Indicator changed my trading completely. I went from guessing market direction to confidently identifying trends with 95% accuracy. In just 3 months, my win rate improved from 45% to 78%. The mentorship program taught me discipline and risk management that books never could.",
+    text: "PAPA TRADING's Pro Trend Indicator changed my trading completely. I went from guessing market direction to confidently identifying trends with 95% accuracy. In just 3 months, my win rate improved from 45% to 78%. The mentorship program taught me discipline and risk management that books never could.",
     avatar: "👨‍💼",
     profit: "+78% Win Rate"
   },
@@ -37,7 +37,7 @@ const testimonials: Testimonial[] = [
     role: "Options Trader",
     location: "Ahmedabad, Gujarat",
     rating: 5,
-    text: "I was skeptical about trading courses until I joined Papa Trading. The NISM-certified mentors explain complex strategies in simple terms. The live sessions, real trade analysis, and lifetime community support are worth every rupee. My portfolio grew 156% this year!",
+    text: "I was skeptical about trading courses until I joined PAPA TRADING. The NISM-certified mentors explain complex strategies in simple terms. The live sessions, real trade analysis, and lifetime community support are worth every rupee. My portfolio grew 156% this year!",
     avatar: "🧑‍💼",
     profit: "+156% Returns"
   },
@@ -46,7 +46,7 @@ const testimonials: Testimonial[] = [
     role: "Beginner Trader",
     location: "Hyderabad, Telangana",
     rating: 5,
-    text: "I started with zero knowledge about trading. Papa Trading's mentorship took me from complete beginner to consistently profitable in 4 months. The Pro Trend Indicator's non-repainting signals gave me the confidence I needed. Now I trade part-time and earn more than my salary!",
+    text: "I started with zero knowledge about trading. PAPA TRADING's mentorship took me from complete beginner to consistently profitable in 4 months. The Pro Trend Indicator's non-repainting signals gave me the confidence I needed. Now I trade part-time and earn more than my salary!",
     avatar: "👩‍🎓",
     profit: "Consistently Profitable"
   },
@@ -55,7 +55,7 @@ const testimonials: Testimonial[] = [
     role: "Positional Trader",
     location: "Delhi NCR",
     rating: 5,
-    text: "The Scanner Suite's multi-bagger scanner helped me identify 3 stocks that gave 200%+ returns in 6 months. The combination of technical and fundamental filters is brilliant. Papa Trading isn't just about tools - it's about building a sustainable trading system.",
+    text: "The Scanner Suite's multi-bagger scanner helped me identify 3 stocks that gave 200%+ returns in 6 months. The combination of technical and fundamental filters is brilliant. PAPA TRADING isn't just about tools - it's about building a sustainable trading system.",
     avatar: "👨‍🏫",
     profit: "+200% on 3 stocks"
   },
@@ -120,14 +120,14 @@ const TestimonialsCarousel = () => {
   };
 
   return (
-    <div className="relative max-w-4xl mx-auto">
+    <div className="relative max-w-4xl mx-auto px-2">
       {/* Decorative Quote */}
       <motion.div
-        className="absolute -top-8 left-8 text-primary/20 z-0"
+        className="absolute -top-4 sm:-top-8 left-4 sm:left-8 text-primary/20 z-0 hidden sm:block"
         animate={{ rotate: [0, 5, 0], scale: [1, 1.1, 1] }}
         transition={{ duration: 4, repeat: Infinity }}
       >
-        <Quote size={100} />
+        <Quote className="w-16 h-16 sm:w-24 sm:h-24 md:w-[100px] md:h-[100px]" />
       </motion.div>
 
       <div className="relative perspective-1000">
@@ -147,19 +147,19 @@ const TestimonialsCarousel = () => {
             }}
             className="w-full"
           >
-            <Card className="gradient-card border-border p-8 shadow-2xl">
-              <div className="flex flex-col md:flex-row gap-6">
+            <Card className="gradient-card border-border p-4 sm:p-6 md:p-8 shadow-2xl">
+              <div className="flex flex-col md:flex-row gap-4 md:gap-6">
                 {/* Avatar Section */}
                 <div className="flex-shrink-0 text-center md:text-left">
                   <motion.div
-                    className="w-20 h-20 mx-auto md:mx-0 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-4xl shadow-gold"
+                    className="w-16 h-16 sm:w-20 sm:h-20 mx-auto md:mx-0 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-2xl sm:text-3xl md:text-4xl shadow-gold"
                     whileHover={{ scale: 1.1, rotate: 360 }}
                     transition={{ duration: 0.5 }}
                   >
                     {testimonials[currentIndex].avatar}
                   </motion.div>
                   <motion.div
-                    className="mt-4 inline-block px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm font-semibold"
+                    className="mt-3 md:mt-4 inline-block px-2 py-1 sm:px-3 sm:py-1 rounded-full bg-green-500/20 text-green-400 text-xs sm:text-sm font-semibold"
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
@@ -170,7 +170,7 @@ const TestimonialsCarousel = () => {
                 {/* Content Section */}
                 <div className="flex-1">
                   {/* Stars */}
-                  <div className="flex gap-1 mb-3">
+                  <div className="flex gap-1 mb-2 md:mb-3">
                     {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
                       <motion.div
                         key={i}
@@ -178,14 +178,14 @@ const TestimonialsCarousel = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: i * 0.1 }}
                       >
-                        <Star className="w-5 h-5 fill-primary text-primary" />
+                        <Star className="w-4 h-4 sm:w-5 sm:h-5 fill-primary text-primary" />
                       </motion.div>
                     ))}
                   </div>
 
                   {/* Testimonial Text */}
                   <motion.p
-                    className="text-muted-foreground leading-relaxed mb-4 text-sm md:text-base"
+                    className="text-muted-foreground leading-relaxed mb-3 md:mb-4 text-sm sm:text-base"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
@@ -199,8 +199,8 @@ const TestimonialsCarousel = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                   >
-                    <p className="font-bold text-foreground">{testimonials[currentIndex].name}</p>
-                    <p className="text-sm text-primary">{testimonials[currentIndex].role}</p>
+                    <p className="font-bold text-sm sm:text-base text-foreground">{testimonials[currentIndex].name}</p>
+                    <p className="text-xs sm:text-sm text-primary">{testimonials[currentIndex].role}</p>
                     <p className="text-xs text-muted-foreground">{testimonials[currentIndex].location}</p>
                   </motion.div>
                 </div>
@@ -210,18 +210,18 @@ const TestimonialsCarousel = () => {
         </AnimatePresence>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-center gap-4 mt-8">
+        <div className="flex justify-center gap-3 sm:gap-4 mt-6 md:mt-8">
           <motion.button
             onClick={handlePrevious}
-            className="w-12 h-12 rounded-full bg-card border border-border shadow-lg flex items-center justify-center hover:bg-primary/10 transition-colors"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-card border border-border shadow-lg flex items-center justify-center hover:bg-primary/10 transition-colors"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <ChevronLeft className="text-primary" />
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
           </motion.button>
 
           {/* Dots */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {testimonials.map((_, index) => (
               <motion.button
                 key={index}
@@ -230,10 +230,10 @@ const TestimonialsCarousel = () => {
                   setCurrentIndex(index);
                   setIsAutoPlaying(false);
                 }}
-                className={`h-2 rounded-full transition-all ${
+                className={`h-1.5 sm:h-2 rounded-full transition-all ${
                   index === currentIndex
-                    ? "w-8 bg-primary"
-                    : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                    ? "w-6 sm:w-8 bg-primary"
+                    : "w-1.5 sm:w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
                 }`}
                 whileHover={{ scale: 1.2 }}
               />
@@ -242,11 +242,11 @@ const TestimonialsCarousel = () => {
 
           <motion.button
             onClick={handleNext}
-            className="w-12 h-12 rounded-full bg-card border border-border shadow-lg flex items-center justify-center hover:bg-primary/10 transition-colors"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-card border border-border shadow-lg flex items-center justify-center hover:bg-primary/10 transition-colors"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <ChevronRight className="text-primary" />
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
           </motion.button>
         </div>
       </div>

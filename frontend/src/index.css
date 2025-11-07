@@ -4,50 +4,57 @@
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
+Brand Colors:
+- Peacock Blue: #1E90FF (30, 144, 255)
+- Teal Green: #008080 (0, 128, 128)
+- Emerald: #50C878 (80, 200, 120)
+- Gold Highlight: #FFD700 (255, 215, 0)
+- Deep Navy: #0A1F44 (10, 31, 68)
 */
 
 @layer base {
   :root {
-    --background: 222 47% 7%;
-    --foreground: 210 40% 98%;
+    --background: 210 100% 3%;
+    --foreground: 180 50% 95%;
 
-    --card: 222 47% 9%;
-    --card-foreground: 210 40% 98%;
+    --card: 210 100% 5%;
+    --card-foreground: 180 50% 95%;
 
-    --popover: 222 47% 9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 210 100% 5%;
+    --popover-foreground: 180 50% 95%;
 
-    --primary: 45 100% 51%;
-    --primary-foreground: 222 47% 11%;
+    --primary: 195 100% 50%;
+    --primary-foreground: 210 100% 3%;
 
-    --secondary: 217 91% 60%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 180 100% 25%;
+    --secondary-foreground: 180 50% 95%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 210 50% 15%;
+    --muted-foreground: 180 20% 65%;
 
-    --accent: 45 100% 51%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 195 100% 50%;
+    --accent-foreground: 210 100% 3%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 180 50% 95%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 45 100% 51%;
+    --border: 210 50% 20%;
+    --input: 210 50% 20%;
+    --ring: 195 100% 50%;
 
     --radius: 0.75rem;
 
-    /* Premium gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(222 47% 7%) 0%, hsl(222 47% 11%) 50%, hsl(217 91% 20%) 100%);
+    /* Premium gradients with peacock green */
+    --gradient-hero: linear-gradient(135deg, hsl(210 100% 3%) 0%, hsl(210 100% 5%) 50%, hsl(195 100% 20%) 100%);
     --gradient-gold: linear-gradient(135deg, hsl(45 100% 51%) 0%, hsl(38 100% 50%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(222 47% 9%) 0%, hsl(217 33% 12%) 100%);
+    --gradient-peacock: linear-gradient(135deg, hsl(195 100% 50%) 0%, hsl(180 100% 25%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(210 100% 5%) 0%, hsl(210 50% 8%) 100%);
     
     /* Shadows */
-    --shadow-glow: 0 0 40px hsl(45 100% 51% / 0.15);
+    --shadow-glow: 0 0 40px hsl(195 100% 50% / 0.15);
     --shadow-gold: 0 10px 40px -10px hsl(45 100% 51% / 0.3);
-    --shadow-blue: 0 10px 40px -10px hsl(217 91% 60% / 0.3);
-    --shadow-card: 0 8px 32px hsl(222 47% 4% / 0.4);
+    --shadow-peacock: 0 10px 40px -10px hsl(195 100% 50% / 0.3);
+    --shadow-card: 0 8px 32px hsl(210 100% 2% / 0.4);
   }
 }
 
@@ -74,6 +81,10 @@ All colors MUST be HSL.
     background: var(--gradient-gold);
   }
   
+  .gradient-peacock {
+    background: var(--gradient-peacock);
+  }
+  
   .gradient-card {
     background: var(--gradient-card);
   }
@@ -86,8 +97,8 @@ All colors MUST be HSL.
     box-shadow: var(--shadow-gold);
   }
   
-  .shadow-blue {
-    box-shadow: var(--shadow-blue);
+  .shadow-peacock {
+    box-shadow: var(--shadow-peacock);
   }
   
   .shadow-card {
@@ -116,5 +127,20 @@ All colors MUST be HSL.
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(195 100% 50% / 0.4), 0 0 40px hsl(195 100% 50% / 0.2);
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: 0 0 30px hsl(195 100% 50% / 0.6), 0 0 60px hsl(195 100% 50% / 0.4), 0 0 80px hsl(195 100% 50% / 0.2);
+      transform: scale(1.02);
+    }
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
   }
 }

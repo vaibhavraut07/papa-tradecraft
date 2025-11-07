@@ -9,8 +9,8 @@ interface SEOProps {
 }
 
 const SEO = ({
-  title = "PaPa Trading - India's Leading Trading Education & Tools Platform",
-  description = "Master stock trading with PaPa Trading's professional mentorship, Pro Trend Indicator, and Scanner Suite. Learn from NISM-certified analysts. Join 1000+ successful traders across India. Get 95% accurate trading signals for NSE, BSE, Forex & Crypto.",
+  title = "PAPA TRADING - India's Leading Trading Education & Tools Platform",
+  description = "Master stock trading with PAPA TRADING's professional mentorship, Pro Trend Indicator, and Scanner Suite. Learn from NISM-certified analysts. Join 1000+ successful traders across India. Get 95% accurate trading signals for NSE, BSE, Forex & Crypto.",
   keywords = "stock trading course, trading mentorship India, Pro Trend Indicator, stock scanner, intraday trading, swing trading, technical analysis, trading education, NISM certified, NSE trading, BSE trading, forex trading, cryptocurrency trading, trading signals, stock market course, learn trading India",
   image = "https://images.unsplash.com/photo-1639768939489-025b90ba9f23",
   url = "https://papatrading.com",
@@ -18,20 +18,19 @@ const SEO = ({
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
-    name: "PaPa Trading",
+    name: "PAPA TRADING",
     description: description,
     url: url,
     logo: image,
     sameAs: [
-      "https://twitter.com/papatrading",
-      "https://facebook.com/papatrading",
-      "https://instagram.com/papatrading",
+      "https://www.facebook.com/profile.php?id=61583531426141",
+      "https://www.instagram.com/papa4trading/",
     ],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91-9594160436",
       contactType: "Customer Service",
-      email: "work.vaibhavraut@gmail.com",
+      email: "support@papatrading.in",
       availableLanguage: ["English", "Hindi"],
     },
     offers: {
@@ -49,7 +48,7 @@ const SEO = ({
     description: "Comprehensive 1-month trading course with 8 live sessions by NISM-certified analysts",
     provider: {
       "@type": "Organization",
-      name: "PaPa Trading",
+      name: "PAPA TRADING",
     },
     offers: {
       "@type": "Offer",
@@ -67,7 +66,7 @@ const SEO = ({
       <meta name="title" content={title} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
-      <meta name="author" content="PaPa Trading" />
+      <meta name="author" content="PAPA TRADING" />
       <link rel="canonical" href={url} />
 
       {/* Open Graph / Facebook */}
@@ -76,7 +75,7 @@ const SEO = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:site_name" content="PaPa Trading" />
+      <meta property="og:site_name" content="PAPA TRADING" />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
