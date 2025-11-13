@@ -12,7 +12,8 @@ const Footer = () => {
               <img 
                 src="/logo.png" 
                 alt="PAPA TRADING Logo" 
-                className="h-8 sm:h-10 w-auto"
+                className="h-8 sm:h-10 w-auto bg-transparent"
+                style={{ backgroundColor: 'transparent' }}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
@@ -120,15 +121,24 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-border mt-6 md:mt-8 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
-          <p className="text-xs sm:text-sm text-muted-foreground text-center md:text-left">
-            © 2025 PAPA TRADING. All rights reserved.
-          </p>
-          <div className="flex space-x-3 md:space-x-4 text-xs sm:text-sm text-muted-foreground">
-            <Link to="/privacy-policy" className="hover:text-primary transition-colors">
-              Privacy Policy
-            </Link>
+        <div className="border-t border-border mt-6 md:mt-8 pt-6 md:pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+            <p className="text-xs sm:text-sm text-muted-foreground text-center md:text-left">
+              © 2025 PAPA TRADING. All rights reserved.
+            </p>
+            <div className="flex space-x-3 md:space-x-4 text-xs sm:text-sm text-muted-foreground">
+              <Link to="/privacy-policy" className="hover:text-primary transition-colors">
+                Privacy Policy
+              </Link>
+              <span className="text-muted-foreground/50">|</span>
+              <Link to="/refund-policy" className="hover:text-primary transition-colors">
+                Refund Policy
+              </Link>
+            </div>
           </div>
+          <p className="text-xs text-muted-foreground/70 text-right mt-3 md:mt-2">
+            <span className="font-semibold">Disclaimer:</span> Trading involves risk. Please read all terms and conditions before subscribing.
+          </p>
         </div>
       </div>
     </footer>

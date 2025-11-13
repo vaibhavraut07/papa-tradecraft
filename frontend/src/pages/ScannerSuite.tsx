@@ -1,6 +1,8 @@
+import { useState } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import EnrollmentForm from "@/components/EnrollmentForm";
 import { 
   Target, 
   TrendingUp, 
@@ -13,50 +15,58 @@ import {
   ArrowRight
 } from "lucide-react";
 import { motion } from "framer-motion";
-import EnhancedTradingChart from "@/components/EnhancedTradingChart";
 
 const ScannerSuite = () => {
+  const [enrollmentFormOpen, setEnrollmentFormOpen] = useState(false);
+
   const features = [
     {
       icon: TrendingUp,
       title: "Breakout Opportunities",
-      description: "Stocks breaking key resistance levels with strong volume",
+      description: "Stocks breaking key resistance levels with strong volume. Identify potential breakouts before they happen and capitalize on early momentum.",
       badge: "#1 Super accuracy setups",
-      image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3"
-    },
-    {
-      icon: AlertCircle,
-      title: "Reversal Signals",
-      description: "Early detection of trend reversals at support/resistance zones",
-      badge: "#2 Spot market reversals",
-      image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f"
+      image: "/Breakout Opportunity Scanner.png"
     },
     {
       icon: BarChart3,
       title: "High Momentum Plays",
-      description: "Stocks showing unusual volume and price movement",
-      badge: "#3 Scalping quick & easy",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71"
+      description: "Stocks showing unusual volume and price movement. Catch fast-moving stocks with exceptional momentum for quick profit opportunities.",
+      badge: "#2 Scalping quick & easy",
+      image: "/High Momentum Stock Scanner.png"
+    },
+    {
+      icon: TrendingUp,
+      title: "Trending Momentum Scanner",
+      description: "Identify stocks with strong trending momentum in any direction. Perfect for traders who want to ride the trend and maximize their profits.",
+      badge: "#3 Ride the trend",
+      image: "/Trending Moment Scanner.png"
+    },
+    {
+      icon: Target,
+      title: "Sideways Market Scanner",
+      description: "Find opportunities in range-bound markets. Identify stocks trading in consolidation patterns, perfect for range trading strategies.",
+      badge: "#4 Range trading",
+      image: "/Sideways Market Scanner.png"
     },
     {
       icon: Target,
       title: "Support & Resistance Zones",
       description: "Critical price levels for entry and exit planning",
-      badge: "#4 Precision levels",
+      badge: "#5 Precision levels",
       image: "https://images.unsplash.com/photo-1639768939489-025b90ba9f23"
     },
     {
       icon: Clock,
       title: "Real-Time Alerts",
       description: "Never miss a trading opportunity with instant notifications",
-      badge: "#5 Live alerts",
+      badge: "#6 Live alerts",
       image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3"
     },
     {
       icon: Zap,
       title: "Pre-Market Insights",
       description: "Prepare your watchlist before the market opens",
-      badge: "#6 Pre-market scan",
+      badge: "#7 Pre-market scan",
       image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f"
     }
   ];
@@ -114,9 +124,9 @@ const ScannerSuite = () => {
               </p>
             </div>
 
-            {/* Feature Cards with Charts */}
+            {/* Feature Cards with Images */}
             <div className="space-y-6 md:space-y-8 px-2">
-              {features.slice(0, 3).map((feature, index) => (
+              {features.slice(0, 4).map((feature, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
@@ -136,18 +146,24 @@ const ScannerSuite = () => {
                         <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-4 md:mb-6 leading-relaxed">
                           {feature.description}
                         </p>
-                        <Button className="gradient-peacock text-primary-foreground font-semibold text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 w-full sm:w-auto">
+                        <Button 
+                          onClick={() => setEnrollmentFormOpen(true)}
+                          className="gradient-peacock text-primary-foreground font-semibold text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 w-full sm:w-auto"
+                        >
                           Get Access Now <ArrowRight className="ml-2 inline" size={18} />
                         </Button>
                       </div>
-                      <div className={`relative h-48 sm:h-64 md:h-80 mb-16 sm:mb-20 md:mb-24 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
-                        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg overflow-visible">
-                          <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-4 overflow-visible">
-                            <EnhancedTradingChart 
-                              symbol={index === 0 ? "NIFTY BANK" : index === 1 ? "GOLD SPOT" : "NIFTY 50"} 
-                              timeframe="5" 
-                            />
-                          </div>
+                      <div className={`relative h-48 sm:h-64 md:h-80 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
+                        <div className="relative w-full h-full rounded-lg overflow-hidden">
+                          <img
+                            src={feature.image}
+                            alt={feature.title}
+                            className="w-full h-full object-cover rounded-lg"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3";
+                            }}
+                          />
                         </div>
                       </div>
                     </div>
@@ -158,7 +174,7 @@ const ScannerSuite = () => {
 
             {/* Remaining Features Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12 px-2">
-              {features.slice(3).map((feature, index) => (
+              {features.slice(4).map((feature, index) => (
                 <AnimatedSection key={index + 3} delay={(index + 3) * 0.1}>
                   <Card className="gradient-card border-border p-4 md:p-6 shadow-card hover:shadow-gold transition-all h-full">
                     <div className="space-y-3 md:space-y-4">
@@ -296,6 +312,12 @@ const ScannerSuite = () => {
           </div>
         </div>
       </AnimatedSection>
+
+      <EnrollmentForm 
+        open={enrollmentFormOpen} 
+        onOpenChange={setEnrollmentFormOpen}
+        defaultService="scanner"
+      />
     </div>
   );
 };

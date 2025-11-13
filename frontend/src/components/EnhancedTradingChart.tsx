@@ -309,19 +309,9 @@ const EnhancedTradingChart = ({ symbol = "NIFTY BANK", timeframe = "5", signalTy
         </div>
       </div>
 
-      {/* Legend */}
-      <div className="p-3 md:p-4 border-t border-gray-700 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
-        <div className="flex flex-wrap gap-3 sm:gap-4 text-xs">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-green-500" />
-            <span className="text-gray-300">Buy Signal</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500" />
-            <span className="text-gray-300">Sell Signal</span>
-          </div>
-        </div>
-        <div className={`px-2 py-1 sm:px-3 sm:py-1 rounded-full ${trendBg} ${trendColor} text-xs font-semibold`}>
+      {/* Legend - Only Trend Signal */}
+      <div className="p-3 md:p-4 border-t border-gray-700 flex flex-col sm:flex-row items-start sm:items-center justify-center gap-3 sm:gap-0">
+        <div className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full ${trendBg} ${trendColor} text-xs sm:text-sm font-semibold`}>
           {priceChange >= 0 ? 'BULLISH' : 'BEARISH'} TREND
         </div>
       </div>

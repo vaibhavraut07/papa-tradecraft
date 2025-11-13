@@ -93,7 +93,7 @@ const Home = () => {
                   >
                     <div className="px-4 sm:px-6 py-2 sm:py-3 rounded-full gradient-gold shadow-gold">
                       <p className="text-xs sm:text-sm font-bold text-primary-foreground tracking-wider whitespace-nowrap">
-                        Patience • Analytical • Persistent • Adaptive
+                        <span className="text-primary">P</span>atience • <span className="text-primary">A</span>nalytical • <span className="text-primary">P</span>ersistent • <span className="text-primary">A</span>daptive
                       </p>
                     </div>
                   </motion.div>
@@ -116,7 +116,7 @@ const Home = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.8 }}
                   >
-                    India's most trusted platform for trading education, professional tools, and NISM-certified mentorship.
+                    India's most trusted partner for Stock Market Mentorship & Innovative Trading tools.
                   </motion.p>
 
                   <motion.div 
@@ -134,10 +134,12 @@ const Home = () => {
                       </Link>
                     </motion.div>
                     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <Button variant="outline" className="text-sm sm:text-base md:text-lg px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 border-2 border-primary/50 hover:bg-primary/10 w-full sm:w-auto">
-                        <Sparkles className="mr-2" />
-                        Explore Tools
-                      </Button>
+                      <Link to="/pro-trend-indicator">
+                        <Button variant="outline" className="text-sm sm:text-base md:text-lg px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 border-2 border-primary/50 hover:bg-primary/10 w-full sm:w-auto">
+                          <Sparkles className="mr-2" />
+                          Explore Trading Tools
+                        </Button>
+                      </Link>
                     </motion.div>
                   </motion.div>
 
@@ -203,9 +205,9 @@ const Home = () => {
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-2xl blur-3xl" />
                     <img
-                      src="https://images.unsplash.com/photo-1660020619062-70b16c44bf0f"
-                      alt="Trading Platform"
-                      className="relative rounded-2xl shadow-2xl border border-border/50"
+                      src="/home banner.jpg"
+                      alt="PAPA TRADING Home Banner"
+                      className="relative rounded-2xl shadow-2xl border border-border/50 w-full h-auto"
                     />
                   </motion.div>
 
@@ -288,10 +290,10 @@ const Home = () => {
                     transition={{ duration: 0.6 }}
                   >
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 md:mb-6 px-2">
-                      See Our <span className="text-primary">Indicators</span> in Action
+                      See Our <span className="text-primary">Pro Trend Indicator</span> in Action
                     </h2>
                     <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-2">
-                      Real-time buy and sell signals with 95% accuracy. Never miss a trading opportunity again.
+                      Real-time Trend signals with 95% accuracy. Never miss a trading opportunity again.
                     </p>
                   </motion.div>
                 </div>
@@ -318,11 +320,10 @@ const Home = () => {
                     <Card className="overflow-hidden border-border shadow-card">
                       <div className="relative aspect-video bg-gradient-to-br from-gray-900 to-gray-800">
                         <img
-                          src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3"
+                          src="/Nifty Bank Index.png"
                           alt="Nifty Bank Trading Chart"
                           className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
                         <div className="absolute bottom-4 left-4 right-4">
                           <h4 className="text-white font-bold text-lg mb-1">NIFTY BANK Index</h4>
                           <p className="text-gray-300 text-sm">Real-time 5-minute chart with BULLISH/BEARISH signals</p>
@@ -348,11 +349,10 @@ const Home = () => {
                     <Card className="overflow-hidden border-border shadow-card">
                       <div className="relative aspect-video bg-gradient-to-br from-gray-900 to-gray-800">
                         <img
-                          src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f"
+                          src="/Gold Spot  USD.png"
                           alt="Gold Spot Trading Chart"
                           className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
                         <div className="absolute bottom-4 left-4 right-4">
                           <h4 className="text-white font-bold text-lg mb-1">Gold Spot / USD</h4>
                           <p className="text-gray-300 text-sm">Multi-timeframe analysis with trend indicators</p>
@@ -374,7 +374,7 @@ const Home = () => {
                   {[
                     { icon: Zap, title: "Leading Signals", desc: "Non-repainting, early alerts", color: "from-yellow-500 to-orange-500" },
                     { icon: Target, title: "95% Accuracy", desc: "Proven by live trading", color: "from-green-500 to-emerald-500" },
-                    { icon: Activity, title: "All Markets", desc: "Stocks, Forex, Crypto", color: "from-blue-500 to-cyan-500" }
+                    { icon: Activity, title: "All Markets", desc: "Stocks, Forex, Crypto", color: "from-primary to-secondary" }
                   ].map((feature, index) => (
                     <motion.div
                       key={index}
@@ -435,10 +435,10 @@ const Home = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-7xl mx-auto px-2">
                 {[
-                  { letter: "P", word: "Patience", desc: "Wait for perfect setups", icon: Clock, color: "from-purple-500 to-pink-500" },
-                  { letter: "A", word: "Analytical", desc: "Data-driven decisions", icon: BarChart3, color: "from-blue-500 to-cyan-500" },
-                  { letter: "P", word: "Persistent", desc: "Stay consistent", icon: Target, color: "from-green-500 to-emerald-500" },
-                  { letter: "A", word: "Adaptive", desc: "Adapt to markets", icon: Zap, color: "from-orange-500 to-red-500" }
+                  { letter: "P", word: "Patience", desc: "Waiting for perfect setups", icon: Clock, color: "from-purple-500 to-pink-500", overlayColor: "from-purple-500/10 to-pink-500/10" },
+                  { letter: "A", word: "Analytical", desc: "Data-driven decisions", icon: BarChart3, color: "from-primary to-secondary", overlayColor: "from-primary/10 to-secondary/10" },
+                  { letter: "P", word: "Persistent", desc: "Staying consistent", icon: Target, color: "from-green-500 to-emerald-500", overlayColor: "from-green-500/10 to-emerald-500/10" },
+                  { letter: "A", word: "Adaptive", desc: "Adapting to markets", icon: Zap, color: "from-orange-500 to-red-500", overlayColor: "from-orange-500/10 to-red-500/10" }
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -455,15 +455,15 @@ const Home = () => {
                         <Card className="p-4 md:p-6 lg:p-8 gradient-card border-border text-center relative overflow-hidden">
                           {/* Animated Background */}
                           <motion.div
-                            className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-5 group-hover:opacity-15 transition-opacity duration-300`}
+                            className={`absolute inset-0 bg-gradient-to-br ${item.overlayColor} group-hover:opacity-20 transition-opacity duration-300`}
                           />
                           
                           <motion.div
-                            className={`w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 mx-auto mb-3 md:mb-4 rounded-xl md:rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center text-2xl md:text-3xl lg:text-4xl font-bold text-white shadow-lg`}
+                            className={`w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 mx-auto mb-3 md:mb-4 rounded-xl md:rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground shadow-lg ring-2 ring-primary/30`}
                             whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
                             transition={{ duration: 0.5 }}
                           >
-                            {item.letter}
+                            <span className="text-primary-foreground">{item.letter}</span>
                           </motion.div>
                           
                           <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-2">{item.word}</h3>
@@ -510,6 +510,9 @@ const Home = () => {
                   </h2>
                   <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-2">
                     Professional-grade tools for every trader
+                  </p>
+                  <p className="text-sm sm:text-base md:text-lg text-primary mt-2 px-2 font-semibold">
+                    Professional & Innovative Trading Solutions
                   </p>
                 </motion.div>
               </div>
@@ -710,7 +713,7 @@ const Home = () => {
                           <ul className="space-y-3 md:space-y-4">
                             {[
                               "Duration: 1 Month (8 Sessions)",
-                              "NISM Certified Analysts",
+                              "NISM Certified Research Analysts",
                               "Live sessions every weekend",
                               "Hands-on practical training",
                               "Lifetime community access",
@@ -760,6 +763,9 @@ const Home = () => {
                             transition={{ type: "spring", stiffness: 200 }}
                           >
                             <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2">₹29,999</p>
+                            <p className="text-xs sm:text-sm text-muted-foreground mb-1">
+                              Price (Excluding 18% GST)
+                            </p>
                             <p className="text-sm md:text-base text-muted-foreground">
                               Complete mentorship with lifetime support
                             </p>
@@ -772,11 +778,6 @@ const Home = () => {
                                   Enroll Now
                                 </Button>
                               </Link>
-                            </motion.div>
-                            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                              <Button variant="outline" className="w-full border-primary/50 hover:bg-primary/10 py-3 md:py-4 lg:py-6 text-sm md:text-base">
-                                Download Curriculum
-                              </Button>
                             </motion.div>
                           </div>
                         </div>

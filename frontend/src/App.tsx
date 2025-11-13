@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FloatingContactBar from "./components/FloatingContactBar";
 import StockMarketBackground from "./components/StockMarketBackground";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import MentorshipProgram from "./pages/MentorshipProgram";
@@ -15,6 +16,7 @@ import ScannerSuite from "./pages/ScannerSuite";
 import ProTrendIndicator from "./pages/ProTrendIndicator";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RefundPolicy from "./pages/RefundPolicy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +38,7 @@ const AppContent = () => {
           <Route path="/pro-trend-indicator" element={<ProTrendIndicator />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
@@ -52,6 +55,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <AppContent />
         </BrowserRouter>
       </TooltipProvider>

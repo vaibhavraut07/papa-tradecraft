@@ -4,8 +4,10 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
+import { submitLead } from "@/lib/api";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,46 +15,80 @@ const Contact = () => {
     phone: "",
     city: "",
     email: "",
+    message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
   const { toast } = useToast();
+
+  // Validate Indian phone number (10 digits, starting with 6-9)
+  const validatePhone = (phone: string): boolean => {
+    const phoneRegex = /^[6-9]\d{9}$/;
+    return phoneRegex.test(phone.replace(/\D/g, ''));
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    // Only allow numbers
+    const numbersOnly = value.replace(/\D/g, '');
+    
+    // Limit to 10 digits
+    const limitedValue = numbersOnly.slice(0, 10);
+    
+    setFormData({ ...formData, phone: limitedValue });
+    
+    // Validate phone number
+    if (limitedValue.length > 0 && limitedValue.length < 10) {
+      setPhoneError("Phone number must be 10 digits");
+    } else if (limitedValue.length === 10 && !validatePhone(limitedValue)) {
+      setPhoneError("Phone number must start with 6, 7, 8, or 9");
+    } else {
+      setPhoneError("");
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    try {
-      // Send form data to backend API
-      const response = await fetch('/api/lead', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          phone: formData.phone,
-          city: formData.city,
-          email: formData.email,
-          source: 'contact_page',
-          timestamp: new Date().toISOString()
-        }),
+    // Validate phone number before submission
+    if (!validatePhone(formData.phone)) {
+      setPhoneError("Please enter a valid 10-digit mobile number");
+      toast({
+        title: "Validation Error",
+        description: "Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9",
+        variant: "destructive",
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
-      }
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      const result = await submitLead({
+        name: formData.name,
+        phone: formData.phone,
+        city: formData.city,
+        email: formData.email,
+        message: formData.message,
+        source: 'contact_page',
+        timestamp: new Date().toISOString()
+      });
 
       toast({
         title: "Success!",
         description: "Thanks! Our team will reach out soon.",
       });
       
-      setFormData({ name: "", phone: "", city: "", email: "" });
+      setFormData({ name: "", phone: "", city: "", email: "", message: "" });
     } catch (error) {
-      // Fallback: Show success message even if API fails (for demo)
+      console.error('Form submission error:', error);
       toast({
-        title: "Success!",
-        description: "Thanks! Our team will reach out soon.",
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to submit form. Please try again or contact us directly.",
+        variant: "destructive",
       });
-      setFormData({ name: "", phone: "", city: "", email: "" });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -126,7 +162,7 @@ const Contact = () => {
                         </div>
                         <div>
                           <h3 className="font-semibold mb-2 text-sm md:text-base">Location</h3>
-                          <p className="text-xs md:text-sm text-muted-foreground">Serving traders nationwide across India</p>
+                          <p className="text-xs md:text-sm text-muted-foreground">Service across world</p>
                         </div>
                       </div>
                     </Card>
@@ -182,10 +218,18 @@ const Contact = () => {
                       type="tel"
                       required
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="bg-background/50 border-border"
-                      placeholder="10-digit mobile number"
+                      onChange={handlePhoneChange}
+                      className={`bg-background/50 border-border ${phoneError ? 'border-red-500 focus:border-red-500' : ''}`}
+                      placeholder="10-digit mobile number (e.g., 9876543210)"
+                      maxLength={10}
+                      pattern="[6-9][0-9]{9}"
                     />
+                    {phoneError && (
+                      <p className="text-xs text-red-500 mt-1">{phoneError}</p>
+                    )}
+                    {!phoneError && formData.phone.length > 0 && formData.phone.length < 10 && (
+                      <p className="text-xs text-muted-foreground mt-1">{formData.phone.length}/10 digits</p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -213,11 +257,23 @@ const Contact = () => {
                     />
                   </div>
 
+                  <div className="space-y-2">
+                    <Label htmlFor="contact-message">Message</Label>
+                    <Textarea
+                      id="contact-message"
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="bg-background/50 border-border min-h-[100px]"
+                      placeholder="Any questions or comments..."
+                    />
+                  </div>
+
                   <Button
                     type="submit"
-                    className="w-full gradient-gold text-primary-foreground font-semibold shadow-gold hover:scale-105 transition-transform text-sm sm:text-base md:text-lg py-3 md:py-4 lg:py-6"
+                    disabled={isSubmitting}
+                    className="w-full gradient-gold text-primary-foreground font-semibold shadow-gold hover:scale-105 transition-transform text-sm sm:text-base md:text-lg py-3 md:py-4 lg:py-6 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </Card>
@@ -226,21 +282,6 @@ const Contact = () => {
         </div>
       </AnimatedSection>
 
-      {/* Map Section */}
-      <AnimatedSection className="py-12 md:py-20 gradient-card-transparent">
-        <div className="container mx-auto px-3 sm:px-4">
-          <div className="max-w-6xl mx-auto px-2">
-            <div className="aspect-video rounded-2xl overflow-hidden shadow-card border border-border bg-background/20">
-              <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                <div className="text-center space-y-2">
-                  <MapPin size={48} className="mx-auto text-primary" />
-                  <p className="text-lg">Map Location Coming Soon</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </AnimatedSection>
     </div>
   );
 };

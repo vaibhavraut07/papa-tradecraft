@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import EnrollmentForm from "@/components/EnrollmentForm";
 import { 
   GraduationCap,
   Users,
@@ -22,6 +23,8 @@ import {
 } from "lucide-react";
 
 const MentorshipProgram = () => {
+  const [enrollmentFormOpen, setEnrollmentFormOpen] = useState(false);
+
   const whatYoullMaster = [
     {
       category: "Market & Institutional Concepts",
@@ -43,11 +46,11 @@ const MentorshipProgram = () => {
       ]
     },
     {
-      category: "Options & Risk Control",
+      category: "Strategies & Risk Control",
       icon: Shield,
       items: [
-        "Advanced Options Selling Strategies",
-        "Index Hedging & Strike Selection",
+        "Advanced Trading Strategies",
+        "Option strategies & Strike selection",
         "Risk & Money Management Systems"
       ]
     },
@@ -107,10 +110,10 @@ const MentorshipProgram = () => {
               </div>
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-display font-bold mb-4 md:mb-6 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent px-2">
-              PAPA TRADING – Elite Mentorship Program
+              PAPA TRADING – Mentorship Program
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 md:mb-8 px-2">
-              Institutional-grade training, practical frameworks, and live market application.
+              Institutional Trading Logics & Live Market Tools
             </p>
             
             {/* Pricing Card */}
@@ -125,17 +128,16 @@ const MentorshipProgram = () => {
                   <span className="text-xs sm:text-sm">• Limited Time Offer</span>
                 </div>
                 <div className="pt-3 md:pt-4 border-t border-border">
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-1 md:mb-2">Total Value: <span className="text-foreground font-semibold">₹62,998</span></p>
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-1 md:mb-2">Total Value: <span className="text-foreground font-semibold">(Check Bonuses) ₹62,998</span></p>
                   <p className="text-base sm:text-lg font-bold text-primary">You Pay: ₹29,999</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-1">Price (Excluding 18% GST)</p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center pt-3 md:pt-4">
-                  <Link to="/mentorship-program" className="w-full sm:w-auto">
-                    <Button className="w-full gradient-peacock text-primary-foreground font-semibold text-sm sm:text-base md:text-lg px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 shadow-peacock hover:scale-105 transition-transform animate-pulse-glow">
-                      Enroll Now
-                    </Button>
-                  </Link>
-                  <Button variant="outline" className="w-full sm:w-auto text-sm sm:text-base md:text-lg px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 border-2 border-primary/50 hover:bg-primary/10">
-                    See Curriculum
+                  <Button 
+                    onClick={() => setEnrollmentFormOpen(true)}
+                    className="w-full gradient-peacock text-primary-foreground font-semibold text-sm sm:text-base md:text-lg px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 shadow-peacock hover:scale-105 transition-transform animate-pulse-glow"
+                  >
+                    Enroll Now
                   </Button>
                 </div>
               </div>
@@ -160,7 +162,7 @@ const MentorshipProgram = () => {
               <Card className="gradient-card border-border p-4 md:p-6 shadow-card text-center">
                 <Calendar className="w-10 h-10 md:w-12 md:h-12 mx-auto mb-3 md:mb-4 text-primary" />
                 <h3 className="text-lg md:text-xl font-display font-bold mb-2">Schedule</h3>
-                <p className="text-sm md:text-base text-muted-foreground">Weekends – Every Saturday & Sunday (Live)</p>
+                <p className="text-sm md:text-base text-muted-foreground">Every Friday & Saturday</p>
               </Card>
               <Card className="gradient-card border-border p-4 md:p-6 shadow-card text-center">
                 <Users className="w-10 h-10 md:w-12 md:h-12 mx-auto mb-3 md:mb-4 text-primary" />
@@ -236,8 +238,9 @@ const MentorshipProgram = () => {
               ))}
             </div>
             <Card className="gradient-peacock border-border p-4 md:p-6 shadow-peacock text-center max-w-md mx-auto px-2">
-              <p className="text-xs md:text-sm text-muted-foreground mb-2">Total Value: <span className="text-foreground font-bold text-base md:text-lg">₹62,998</span></p>
+              <p className="text-xs md:text-sm text-muted-foreground mb-2">Total Value: <span className="text-foreground font-bold text-base md:text-lg">(Check Bonuses) ₹62,998</span></p>
               <p className="text-xl md:text-2xl font-bold text-primary-foreground">You Pay: ₹29,999</p>
+              <p className="text-xs md:text-sm text-muted-foreground mt-1">Price (Excluding 18% GST)</p>
             </Card>
           </div>
         </div>
@@ -246,15 +249,27 @@ const MentorshipProgram = () => {
       {/* Who Should Join */}
       <AnimatedSection className="py-12 md:py-20 gradient-card-transparent">
         <div className="container mx-auto px-3 sm:px-4">
-          <div className="max-w-4xl mx-auto text-center px-2">
+          <div className="max-w-4xl mx-auto px-2">
             <Target className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 md:mb-6 text-primary" />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 md:mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 md:mb-6 text-center">
               Who Should <span className="text-primary">Join</span>?
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-              For active traders, aspiring professionals, and serious learners who want institutional workflows, 
-              practical execution rules, and measurable improvement in performance.
-            </p>
+            <Card className="gradient-card border-border p-4 md:p-6 shadow-card">
+              <ul className="space-y-3 md:space-y-4">
+                <li className="flex items-start space-x-3">
+                  <CheckCircle className="text-primary mt-0.5 md:mt-1 flex-shrink-0 w-5 h-5 md:w-6 md:h-6" />
+                  <span className="text-sm md:text-base text-muted-foreground">Active traders seeking institutional workflows</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <CheckCircle className="text-primary mt-0.5 md:mt-1 flex-shrink-0 w-5 h-5 md:w-6 md:h-6" />
+                  <span className="text-sm md:text-base text-muted-foreground">Aspiring professionals wanting practical execution rules</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <CheckCircle className="text-primary mt-0.5 md:mt-1 flex-shrink-0 w-5 h-5 md:w-6 md:h-6" />
+                  <span className="text-sm md:text-base text-muted-foreground">Serious learners aiming for measurable improvement in performance</span>
+                </li>
+              </ul>
+            </Card>
           </div>
         </div>
       </AnimatedSection>
@@ -288,19 +303,23 @@ const MentorshipProgram = () => {
                 </div>
               </div>
               <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
-                <Link to="/mentorship-program" className="w-full sm:w-auto">
-                  <Button className="w-full gradient-peacock text-primary-foreground font-semibold text-sm sm:text-base md:text-lg px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 shadow-peacock hover:scale-105 transition-transform animate-pulse-glow">
-                    Enroll Now
-                  </Button>
-                </Link>
-                <Button variant="outline" className="w-full sm:w-auto text-sm sm:text-base md:text-lg px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 border-2 border-primary/50 hover:bg-primary/10">
-                  Contact Us
+                <Button 
+                  onClick={() => setEnrollmentFormOpen(true)}
+                  className="w-full gradient-peacock text-primary-foreground font-semibold text-sm sm:text-base md:text-lg px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-6 shadow-peacock hover:scale-105 transition-transform animate-pulse-glow"
+                >
+                  Enroll Now
                 </Button>
               </div>
             </Card>
           </div>
         </div>
       </AnimatedSection>
+
+      <EnrollmentForm 
+        open={enrollmentFormOpen} 
+        onOpenChange={setEnrollmentFormOpen}
+        defaultService="mentorship-program"
+      />
     </div>
   );
 };

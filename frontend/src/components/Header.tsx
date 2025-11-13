@@ -39,7 +39,8 @@ const Header = () => {
             <img 
               src="/logo.png" 
               alt="PAPA TRADING Logo" 
-              className="h-8 sm:h-10 w-auto"
+              className="h-8 sm:h-10 w-auto bg-transparent"
+              style={{ backgroundColor: 'transparent' }}
               onError={(e) => {
                 // Fallback to text logo if image not found
                 const target = e.target as HTMLImageElement;
